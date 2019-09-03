@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	dodge(Vector2.UP)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -23,6 +23,7 @@ func dodge(vector):
 	$DodgeTimer.start(dodgeTime)
 	ctrlLock = true
 	velocity = vector.normalized() * dodgeSpeed
+	isDodge = false
 
 func get_input():
 	velocity = Vector2()
@@ -32,8 +33,7 @@ func get_input():
 	
 	if Input.is_action_just_pressed("Dodge"):
 		isDodge = true
-		return
-	if Input.is_action_just_pressed('Attack'):
+	elif Input.is_action_just_pressed('Attack'):
 		atk = true
 		return
 	
@@ -54,7 +54,6 @@ func get_input():
 		anim = 'WalkLeft'
 		dir = LEFT
 	velocity = velocity.normalized() * speed
-
 
 func _physics_process(delta):
 	if !ctrlLock :
@@ -91,6 +90,5 @@ func setCtrl(newVal):
 	ctrlLock = newVal
 
 func _on_DodgeTimer_timeout():
-	print("oop")
 	ctrlLock = false
 	
