@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Fasc1.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fasc1.png" type="Texture" id=2]
-[ext_resource path="res://Anims/AnimationPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/enemyPipeSwing.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/enemyPipeSwing.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "AttackDown"
@@ -492,8 +491,9 @@ position = Vector2( 0, -1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 3
+frame = 4
 
-[node name="AnimationPlayer" parent="." instance=ExtResource( 3 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackDown = SubResource( 1 )
 anims/AttackLeft = SubResource( 2 )
 anims/AttackRight = SubResource( 3 )
@@ -509,10 +509,11 @@ shape = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
-position = Vector2( 11, -1 )
+position = Vector2( 0, 11 )
+rotation = 1.5708
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 0.4, 0.8 )
