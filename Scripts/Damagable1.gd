@@ -11,7 +11,6 @@ func Damagable1():
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = iFrameSeconds
-	timer.name = "Timer"
 	add_child(timer)
 	timer.connect("timeout", self, "_on_Timer_timeout")
 

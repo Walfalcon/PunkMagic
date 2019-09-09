@@ -1,4 +1,4 @@
-extends PlayerWeapon
+extends EnemyWeapon
 
 func setActive(val):
 	visible = val

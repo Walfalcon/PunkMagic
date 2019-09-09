@@ -15,12 +15,24 @@ _global_script_classes=[ {
 "path": "res://Scripts/Damagable1.gd"
 }, {
 "base": "Area2D",
+"class": "EnemyWeapon",
+"language": "GDScript",
+"path": "res://Scripts/EnemyWeapon.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player1",
+"language": "GDScript",
+"path": "res://Scripts/Player.gd"
+}, {
+"base": "Area2D",
 "class": "PlayerWeapon",
 "language": "GDScript",
 "path": "res://Scripts/PlayerWeapon.gd"
 } ]
 _global_script_class_icons={
 "Damagable1": "",
+"EnemyWeapon": "",
+"Player1": "",
 "PlayerWeapon": ""
 }
 

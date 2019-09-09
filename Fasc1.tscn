@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Fasc1.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fasc1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/enemyPipeSwing.png" type="Texture" id=3]
+[ext_resource path="res://EnemyPipe.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/enemyPipeSwing.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/alert.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "AttackDown"
-length = 0.4
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:flip_h")
 tracks/0/interp = 1
@@ -26,10 +28,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 5, 4 ]
+"values": [ 4, 5, 4 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -38,7 +40,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ false ],
@@ -52,7 +54,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 11 ) ]
@@ -64,7 +66,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 90.0 ]
@@ -76,18 +78,35 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Area2D:visible")
+tracks/6/type = "method"
+tracks/6/path = NodePath("Area2D")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setActive"
+}, {
+"args": [ false ],
+"method": "setActive"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AttackWarning:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -96,7 +115,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "AttackLeft"
-length = 0.4
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:flip_h")
 tracks/0/interp = 1
@@ -116,10 +135,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 0 ]
+"values": [ 0, 2, 0 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -128,7 +147,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ false ],
@@ -148,19 +167,19 @@ tracks/3/keys = {
 "values": [ Vector2( -11, -1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Area2D:visible")
+tracks/4/path = NodePath("Area2D/Sprite:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Area2D/Sprite:flip_h")
+tracks/5/path = NodePath("Area2D:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -168,25 +187,42 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ 0.0 ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Area2D:rotation_degrees")
+tracks/6/type = "method"
+tracks/6/path = NodePath("Area2D")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setActive"
+}, {
+"args": [ false ],
+"method": "setActive"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AttackWarning:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackRight"
-length = 0.4
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -194,10 +230,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 0 ]
+"values": [ 0, 2, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
@@ -206,7 +242,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -218,7 +254,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ false ],
@@ -226,31 +262,31 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Area2D:visible")
+tracks/3/path = NodePath("Area2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 5.12305e-014 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ Vector2( 11, -1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Area2D:position")
+tracks/4/path = NodePath("Area2D:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 5.12305e-014 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 11, -1 ) ]
+"values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Area2D:rotation_degrees")
+tracks/5/path = NodePath("Area2D/Sprite:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -259,24 +295,41 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.0 ]
+"values": [ false ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Area2D/Sprite:flip_h")
+tracks/6/type = "method"
+tracks/6/path = NodePath("Area2D")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setActive"
+}, {
+"args": [ false ],
+"method": "setActive"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AttackWarning:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "AttackUp"
-length = 0.4
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -308,7 +361,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ false ],
@@ -351,13 +404,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 0, -11 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Area2D:visible")
+tracks/6/type = "method"
+tracks/6/path = NodePath("Area2D")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setActive"
+}, {
+"args": [ false ],
+"method": "setActive"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AttackWarning:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -491,7 +561,7 @@ position = Vector2( 0, -1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 3
-frame = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackDown = SubResource( 1 )
@@ -509,11 +579,13 @@ shape = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
-position = Vector2( 0, 11 )
-rotation = 1.5708
+position = Vector2( 0, -11 )
+rotation = -1.5708
+monitoring = false
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 0.4, 0.8 )
@@ -522,4 +594,8 @@ shape = SubResource( 10 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( -7, -9, 14, 16 )
 
+[node name="AttackWarning" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, -16 )
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

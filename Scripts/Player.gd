@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player1
+
 export (int) var speed = 100
 export (int) var dodgeSpeed = 300
 export (float) var dodgeTime = 0.1
@@ -14,6 +16,9 @@ enum {UP, DOWN, LEFT, RIGHT}
 
 func ready():
 	baseSpeed = speed
+
+func damage(val):
+	pass
 
 func dodge(vector):
 	$DodgeTimer.start(dodgeTime)
