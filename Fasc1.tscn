@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Pipe.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/pipeSwing.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/player.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Fasc1.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/fasc1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/enemyPipeSwing.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "AttackDown"
@@ -82,8 +81,8 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("Area2D")
+tracks/6/type = "value"
+tracks/6/path = NodePath("Area2D:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -91,13 +90,8 @@ tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setActive"
-}, {
-"args": [ false ],
-"method": "setActive"
-} ]
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -154,19 +148,19 @@ tracks/3/keys = {
 "values": [ Vector2( -11, -1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Area2D/Sprite:flip_h")
+tracks/4/path = NodePath("Area2D:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Area2D:rotation_degrees")
+tracks/5/path = NodePath("Area2D/Sprite:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -174,25 +168,20 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"update": 1,
+"values": [ true ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("Area2D")
+tracks/6/type = "value"
+tracks/6/path = NodePath("Area2D:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setActive"
-}, {
-"args": [ false ],
-"method": "setActive"
-} ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -237,31 +226,31 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Area2D:position")
+tracks/3/path = NodePath("Area2D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 5.12305e-014 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 11, -1 ) ]
+"values": [ true, false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Area2D:rotation_degrees")
+tracks/4/path = NodePath("Area2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 5.12305e-014 ),
 "update": 1,
-"values": [ 0.0 ]
+"values": [ Vector2( 11, -1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Area2D/Sprite:flip_h")
+tracks/5/path = NodePath("Area2D:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -270,24 +259,19 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ 0.0 ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("Area2D")
+tracks/6/type = "value"
+tracks/6/path = NodePath("Area2D/Sprite:flip_h")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setActive"
-}, {
-"args": [ false ],
-"method": "setActive"
-} ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -367,8 +351,8 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 0, -11 ) ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("Area2D")
+tracks/6/type = "value"
+tracks/6/path = NodePath("Area2D:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -376,13 +360,8 @@ tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setActive"
-}, {
-"args": [ false ],
-"method": "setActive"
-} ]
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -503,10 +482,16 @@ tracks/1/keys = {
 
 [sub_resource type="RectangleShape2D" id=10]
 
-[node name="Player" type="KinematicBody2D"]
-position = Vector2( 128, 122 )
+[node name="Fasc1" type="KinematicBody2D"]
 script = ExtResource( 1 )
-dodgeSpeed = 400
+health = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 3
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackDown = SubResource( 1 )
@@ -518,33 +503,23 @@ anims/WalkLeft = SubResource( 6 )
 anims/WalkRight = SubResource( 7 )
 anims/WalkUp = SubResource( 8 )
 
-[node name="DodgeTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.7, 0.7 )
+shape = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
-position = Vector2( 0, -11 )
-rotation = -1.5708
-monitoring = false
-script = ExtResource( 2 )
+position = Vector2( 0, 11 )
+rotation = 1.5708
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 0.4, 0.8 )
-shape = SubResource( 9 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 4 )
-offset = Vector2( 0, -1 )
-vframes = 2
-hframes = 3
-frame = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 0.7, 0.7 )
 shape = SubResource( 10 )
 
-[connection signal="timeout" from="DodgeTimer" to="." method="_on_DodgeTimer_timeout"]
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -7, -9, 14, 16 )
+
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

@@ -3,13 +3,17 @@ extends KinematicBody2D
 export (int) var speed = 100
 export (int) var dodgeSpeed = 300
 export (float) var dodgeTime = 0.1
-var velocity
+var velocity = Vector2()
+var baseSpeed
 var atk
 var anim
 var dir = RIGHT
 var ctrlLock = false
 var isDodge = false
 enum {UP, DOWN, LEFT, RIGHT}
+
+func ready():
+	baseSpeed = speed
 
 func dodge(vector):
 	$DodgeTimer.start(dodgeTime)
@@ -76,7 +80,8 @@ func _physics_process(delta):
 			dodge(Vector2.RIGHT)
 		elif dir == LEFT:
 			dodge(Vector2.LEFT)
-	velocity = move_and_slide(velocity)	
+	velocity = move_and_slide(velocity)
+	z_index = transform.origin.y
 
 func setCtrl(newVal):
 	ctrlLock = newVal

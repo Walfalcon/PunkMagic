@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Damagable1",
+"language": "GDScript",
+"path": "res://Scripts/Damagable1.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerWeapon",
+"language": "GDScript",
+"path": "res://Scripts/PlayerWeapon.gd"
+} ]
 _global_script_class_icons={
-
+"Damagable1": "",
+"PlayerWeapon": ""
 }
 
 [application]
