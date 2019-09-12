@@ -10,17 +10,22 @@ var velocity = Vector2()
 var pRelPos = Vector2()
 var anim
 var attackTimer
-var attackDelay
+var rng = RandomNumberGenerator.new()
+var attackDelay = 1
+var attackReady = false
 
 
 func _ready():
 	player = get_node("../Player")
 	speed = baseSpeed
-	Damagable1()
 	attackTimer = Timer.new()
-	attackTimer.wait_time = attackDelay
+	rng.randomize()
+	attackTimer.wait_time = attackDelay + rng.randf_range(0, 0.5)
+	attackTimer.name = "attackTimer"
 	add_child(attackTimer)
-	attackTimer
+	attackTimer.connect("timeout", self, "_on_Timer_timeout")
+	attackTimer.start()
+	Damagable1()
 
 func setCtrl (newVal):
 	ctrlLock = newVal
@@ -51,9 +56,11 @@ func getVelocity():
 
 func _physics_process(delta):
 	pRelPos = player.transform.origin - transform.origin
-	if pRelPos.abs().x + pRelPos.abs().y < 24:
-		velocity = Vector2()
-		attack()
+	if attackReady:
+		attackReady = false
+		if pRelPos.abs().x < 20 && pRelPos.abs().y < 20:
+			velocity = Vector2()
+			attack()
 	if !ctrlLock:
 		getVelocity()
 		if anim != null:
@@ -76,3 +83,6 @@ func attack():
 
 func _on_VisibilityNotifier2D_screen_entered():
 	ctrlLock = false
+	
+func _on_Timer_timeout():
+	attackReady = true

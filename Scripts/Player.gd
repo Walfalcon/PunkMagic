@@ -30,11 +30,7 @@ func get_input():
 	velocity = Vector2()
 	atk = false
 	anim = null
-	isDodge = false
-	
-	if Input.is_action_just_pressed("Dodge"):
-		isDodge = true
-	elif Input.is_action_just_pressed('Attack'):
+	if Input.is_action_just_pressed('Attack'):
 		atk = true
 		return
 	
@@ -57,6 +53,9 @@ func get_input():
 	velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Dodge"):
+		isDodge = true
+	
 	if !ctrlLock :
 		get_input()
 	if !ctrlLock && anim != null:
@@ -74,7 +73,7 @@ func _physics_process(delta):
 		elif dir == LEFT:
 			$AnimationPlayer.play("AttackLeft")
 		ctrlLock = true
-	if isDodge:
+	if !ctrlLock && isDodge:
 		if velocity.y != 0 || velocity.x != 0:
 			dodge(velocity)
 		elif dir == UP:

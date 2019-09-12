@@ -561,7 +561,7 @@ position = Vector2( 0, -1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 3
-frame = 3
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackDown = SubResource( 1 )
@@ -579,8 +579,8 @@ shape = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
-position = Vector2( 0, -11 )
-rotation = -1.5708
+position = Vector2( 0, 11 )
+rotation = 1.5708
 monitoring = false
 script = ExtResource( 3 )
 
@@ -598,4 +598,5 @@ rect = Rect2( -7, -9, 14, 16 )
 visible = false
 texture = ExtResource( 5 )
 offset = Vector2( 0, -16 )
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
