@@ -12,12 +12,15 @@ var anim
 var attackTimer
 var attackDelay
 
+
 func _ready():
 	player = get_node("../Player")
 	speed = baseSpeed
 	Damagable1()
 	attackTimer = Timer.new()
-	timer.wait_time = attackDelay
+	attackTimer.wait_time = attackDelay
+	add_child(attackTimer)
+	attackTimer
 
 func setCtrl (newVal):
 	ctrlLock = newVal
