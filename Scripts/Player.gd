@@ -5,6 +5,8 @@ class_name Player1
 export (int) var speed = 100
 export (int) var dodgeSpeed = 300
 export (float) var dodgeTime = 0.1
+export (int) var knockbackSpeed = 350
+export (float) var knockbackTime = 0.075
 var velocity = Vector2()
 var baseSpeed
 var atk
@@ -13,17 +15,24 @@ var dir = RIGHT
 var ctrlLock = false
 var isDodge = false
 enum {UP, DOWN, LEFT, RIGHT}
+export (int) var hp = 100
 
 func ready():
 	baseSpeed = speed
-
-func damage(val):
+	
+func kill():
 	pass
 
-func dodge(vector):
-	$DodgeTimer.start(dodgeTime)
+func damage(val, vector):
+	hp -= val
+	if hp <= 0:
+		kill()
+	dodge(vector, knockbackSpeed, knockbackTime)
+
+func dodge(vector, speed, time):
+	$DodgeTimer.start(time)
 	ctrlLock = true
-	velocity = vector.normalized() * dodgeSpeed
+	velocity = vector.normalized() * speed
 	isDodge = false
 
 func get_input():
@@ -75,15 +84,15 @@ func _physics_process(delta):
 		ctrlLock = true
 	if !ctrlLock && isDodge:
 		if velocity.y != 0 || velocity.x != 0:
-			dodge(velocity)
+			dodge(velocity, dodgeSpeed, dodgeTime)
 		elif dir == UP:
-			dodge(Vector2.UP)
+			dodge(Vector2.UP, dodgeSpeed, dodgeTime)
 		elif dir == DOWN:
-			dodge(Vector2.DOWN)
+			dodge(Vector2.DOWN, dodgeSpeed, dodgeTime)
 		elif dir == RIGHT:
-			dodge(Vector2.RIGHT)
+			dodge(Vector2.RIGHT, dodgeSpeed, dodgeTime)
 		elif dir == LEFT:
-			dodge(Vector2.LEFT)
+			dodge(Vector2.LEFT, dodgeSpeed, dodgeTime)
 	velocity = move_and_slide(velocity)
 	z_index = transform.origin.y
 

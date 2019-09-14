@@ -23,7 +23,7 @@ func _ready():
 	attackTimer.wait_time = attackDelay + rng.randf_range(0, 0.5)
 	attackTimer.name = "attackTimer"
 	add_child(attackTimer)
-	attackTimer.connect("timeout", self, "_on_Timer_timeout")
+	attackTimer.connect("timeout", self, "_on_attackTimer_timeout")
 	attackTimer.start()
 	Damagable1()
 
@@ -84,5 +84,5 @@ func attack():
 func _on_VisibilityNotifier2D_screen_entered():
 	ctrlLock = false
 	
-func _on_Timer_timeout():
+func _on_attackTimer_timeout():
 	attackReady = true

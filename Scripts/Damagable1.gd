@@ -13,7 +13,7 @@ func Damagable1():
 	timer.wait_time = iFrameSeconds
 	timer.name = "hitTimer"
 	add_child(timer)
-	timer.connect("timeout", self, "_on_Timer_timeout")
+	timer.connect("timeout", self, "_on_hitTimer_timeout")
 
 func damage(hitValue):
 	if vulnurable:
@@ -26,5 +26,5 @@ func damage(hitValue):
 func die():
 	queue_free()
 
-func _on_Timer_timeout():
+func _on_hitTimer_timeout():
 	vulnurable = true

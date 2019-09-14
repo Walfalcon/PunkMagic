@@ -8,5 +8,13 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Fasc1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 10.0802, 14.7325 )
+position = Vector2( 177.768, 72.829 )
 
+[node name="Fasc2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 45.2902, 93.0748 )
+
+[node name="Fasc3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 132.435, 34.098 )
+
+[node name="Fasc4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 51.8921, 53.0234 )
