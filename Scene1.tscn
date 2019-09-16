@@ -18,3 +18,4 @@ position = Vector2( 132.435, 34.098 )
 
 [node name="Fasc4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 51.8921, 53.0234 )
+
