@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fasc1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sound/Bitzkrieg bop.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sound/a message intro.wav" type="AudioStream" id=4]
+[ext_resource path="res://AudioStreamPlayer2.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,3 +21,12 @@ position = Vector2( 132.435, 34.098 )
 
 [node name="Fasc4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 51.8921, 53.0234 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+script = ExtResource( 5 )
+[connection signal="finished" from="AudioStreamPlayer2" to="AudioStreamPlayer2" method="_on_AudioStreamPlayer2_finished"]

@@ -11,11 +11,11 @@ dest_files=[ "res://.import/Bitzkrieg bop.wav-4baf2cb98aac3e0751bebbe8ef7a4978.s
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
+edit/trim=false
 edit/normalize=true
-edit/loop=false
+edit/loop=true
 compress/mode=0
