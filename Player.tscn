@@ -504,7 +504,7 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=10]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 128, 122 )
+position = Vector2( 128, 112 )
 script = ExtResource( 1 )
 dodgeSpeed = 400
 
@@ -545,4 +545,11 @@ hframes = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.7, 0.7 )
 shape = SubResource( 10 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_bottom = 224
+
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_DodgeTimer_timeout"]
