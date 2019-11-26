@@ -17,6 +17,9 @@ var isDodge = false
 enum {UP, DOWN, LEFT, RIGHT}
 export (int) var hp = 100
 
+func getDodge():
+	return isDodge
+
 func ready():
 	baseSpeed = speed
 	
@@ -33,7 +36,7 @@ func dodge(vector, speed, time):
 	$DodgeTimer.start(time)
 	ctrlLock = true
 	velocity = vector.normalized() * speed
-	isDodge = false
+
 
 func get_input():
 	velocity = Vector2()
@@ -101,3 +104,4 @@ func setCtrl(newVal):
 
 func _on_DodgeTimer_timeout():
 	ctrlLock = false
+	isDodge = false
